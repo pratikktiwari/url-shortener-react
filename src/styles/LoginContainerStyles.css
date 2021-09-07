@@ -1,0 +1,82 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition-duration: .3s;
+}
+body{
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.loginStyle {
+}
+.mainContainerSignupLogin {
+}
+.topHeader {
+  text-align: center;
+  font-weight: normal;
+  margin: 60px 0;
+}
+.containerFlex {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.leftParentContainer {
+  flex:2;
+  /* background-color: red; */
+  background-image: url("../assets/imageLeftHumanWithLaptop.jpg");
+  height: 450px;
+  background-size: contain;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+.rightParentContainer {
+  flex:1;
+  width: 400px;
+  padding: 10px;
+}
+.singleInputParent {
+  margin-top: 30px;
+  width: 80%;
+}
+.singleInputParent label{
+  display: block;
+}
+.singleInputParent input{
+  margin-top: 15px;
+  border: 0;
+  border-bottom: 2px solid #000;
+  background-color: transparent;
+  outline: none;
+  padding-bottom: 5px;
+  font-weight: lighter;
+  width: 100%;
+}
+.singleInputParent button{
+  background-color: #4460ef;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  width: 100%;
+}
+.singleInputParent button:hover{
+  box-shadow: 2px 4px 4px #4461ef3d;
+}
+.singleInputParent p{
+  text-align: center;
+}
+.singleInputParent p strong{
+  cursor: pointer;
+}
+.errorBlock{
+  color: rgb(121, 17, 17);
+}
+.errorBlock:before{
+  content: ' \2298  ';
+  font-size: 18px;
+}

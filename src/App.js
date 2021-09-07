@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import LoginSignupContainer from "./components/LoginSignupContainer";
+export default class App extends React.Component {
+  /**
+   * Checks if user is logged in from cookies
+   * @returns void
+   */
+  checkLoggedInUser = () => {
+    const cookieKey = "userEmail";
+    const match = document.cookie.match(
+      new RegExp("(^| )" + cookieKey + "=([^;]+)")
+    );
+    if (match && match.length && match[2] !== "null") {
+      sessionStorage.setItem("userEmail", match[2]);
+      return true;
+    }
+    return false;
+  };
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/login">
+            <LoginSignupContainer/>
+          </Route>
+        </Switch>
+      </Router>
+    );
+  }
 }
-
-export default App;
