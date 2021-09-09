@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition-duration: 0.3s;
+}
+.topNav {
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+}
+.topNav ul {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+.topNav .headerImageLogo img {
+  width: 50px;
+}
+.topNav .welcomeTextDashboard {
+  /* padding: 0 20px; */
+}
+.topNav .logoutButtonHeader {
+  cursor: pointer;
+}
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dashboardContainerFlex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 100px;
+  min-height: 500px;
+  vertical-align: middle;
+}
+.dashboardContainer .leftSection {
+  flex: 1;
+}
+.dashboardContainer .rightSection {
+  flex: 1;
+}
+.dashboardContainer .leftSectionNoURL {
+  text-align: center;
+  max-width: 350px;
+  padding: 20px;
+  margin: auto;
+}
+.dashboardContainer .leftSectionNoURL h2 {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+.dashboardContainer .leftSectionNoURL h3 {
+  font-size: 18px;
+}
+.dashboardContainer .leftSectionNoURL img {
+  width: 200px;
+}
+@media screen and (max-width: 800px) {
+  .dashboardContainerFlex {
+    flex-direction: column-reverse;
+    align-items: unset;
+    margin-top: 10px;
+    min-height: unset;
+  }
+  .dashboardContainer .leftSectionNoURL {
+    max-width: 90%;
+  }
+  .dashboardContainer .rightSection {
+    height: 700px;
+    padding-bottom: 100px;
+  }
+  .dashboardContainer .rightSection h2 {
+    text-align: center;
+    margin: 30px 0 60px 0;
+  }
+  .rightSection .submitButtonDashboardDiv {
+    margin-top: 50px;
+  }
+}

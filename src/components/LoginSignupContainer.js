@@ -2,7 +2,7 @@ import React from "react";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
 import "../styles/LoginContainerStyles.css";
-// import imageLeftHuman from "../assets/imageLeftHumanWithLaptop.jpg";
+import imageLeftHuman from "../assets/imageLeftHumanWithLaptop.jpg";
 import FooterComponent from "./FooterComponent";
 export default class LoginSignupContainer extends React.Component {
   state = {
@@ -22,11 +22,11 @@ export default class LoginSignupContainer extends React.Component {
         </h1>
         <div className="containerFlex">
           <div className="leftParentContainer">
-              {/* <img
+              <img
                 src={imageLeftHuman}
                 alt="man with laptop"
                 aria-label="man with laptop"
-              /> */}
+              />
           </div>
           <div className="rightParentContainer">
             {isSignUpPage ? (

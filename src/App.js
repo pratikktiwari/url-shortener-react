@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Dashboard from "./components/Dashboard";
 import LoginSignupContainer from "./components/LoginSignupContainer";
 export default class App extends React.Component {
   /**
@@ -21,13 +22,18 @@ export default class App extends React.Component {
     return (
       <Router>
         <Switch>
-          <Route path="/">
-            <LoginSignupContainer/>
+          <Route exact path="/">
+            {/* <LoginSignupContainer/> */}
+            <Dashboard />
           </Route>
-          <Route path="/login">
-            <div>
-              <h1>Hello world</h1>
-            </div>
+          <Route exact path="/login">
+            <LoginSignupContainer />
+          </Route>
+          <Route exact path="/signup">
+            <LoginSignupContainer />
+          </Route>
+          <Route exact path="/home">
+            <Dashboard />
           </Route>
         </Switch>
       </Router>
