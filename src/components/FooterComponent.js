@@ -6,7 +6,7 @@ export default class FooterComponent extends React.Component{
         textAlign:"center",
         marginTop:"60px"
       }}>
-        <p>Developed by: Pratik K Tiwari linkedIn Github Twitter</p>
+        <p>Developed by: Pratik K Tiwari</p>
         <div>
           &hearts;
         </div>

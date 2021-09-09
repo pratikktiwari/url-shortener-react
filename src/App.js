@@ -24,6 +24,11 @@ export default class App extends React.Component {
           <Route path="/">
             <LoginSignupContainer/>
           </Route>
+          <Route path="/login">
+            <div>
+              <h1>Hello world</h1>
+            </div>
+          </Route>
         </Switch>
       </Router>
     );
