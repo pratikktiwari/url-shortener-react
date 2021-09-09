@@ -26,7 +26,6 @@ body{
 }
 .leftParentContainer {
   flex:2;
-  /* background-color: red; */
   background-image: url("../assets/imageLeftHumanWithLaptop.jpg");
   height: 450px;
   background-size: contain;
@@ -79,4 +78,20 @@ body{
 .errorBlock:before{
   content: ' \2298  ';
   font-size: 18px;
+}
+@media screen and (max-width: 800px) {
+  .containerFlex{
+    display: block;
+  }
+  .leftParentContainer{
+    flex: 1;
+  }
+  .rightParentContainer{
+    flex: 1;
+    margin: auto;
+  }
+  .singleInputParent{
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
