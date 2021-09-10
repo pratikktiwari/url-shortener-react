@@ -79,6 +79,13 @@ body {
   content: " \2298  ";
   font-size: 18px;
 }
+.successBlock {
+  color: green;
+}
+.successBlock:before {
+  content: " \2713  ";
+  font-size: 18px;
+}
 @media screen and (max-width: 800px) {
   .containerFlex {
     display: block;
