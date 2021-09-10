@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition-duration: 0.3s;
+  transition-duration: 0.2s;
 }
 body {
   display: flex;
@@ -101,4 +101,21 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
+}
+.footerIconsBottom > i,
+.footerIconsBottom > svg {
+  color: #000;
+}
+.footerIconsBottom {
+  padding-bottom: 10px;
+}
+.footerIconsBottom a {
+  color: #000;
+  margin: 10px;
+  text-decoration: none;
+  transition-duration: 0.05s;
+}
+.footerIconsBottom a:hover {
+  transition-duration: 0.05s;
+  color: #4460ef;
 }
