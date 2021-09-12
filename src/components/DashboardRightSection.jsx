@@ -25,7 +25,7 @@ export default class DashboardRightSection extends React.Component {
       return;
     }
     await axios
-      .post("addURL.php", {
+      .post("https://shortener-url.azurewebsites.net/addURL.php", {
         shortName: shortName,
         longURL: longURL,
       })

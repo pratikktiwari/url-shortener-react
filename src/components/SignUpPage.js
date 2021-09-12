@@ -34,7 +34,7 @@ export default class SignUpPage extends React.Component {
       return;
     }
     await axios
-      .post("signup.php", {
+      .post("https://shortener-url.azurewebsites.net/signup.php", {
         userName: userName,
         userEmail: userEmail,
         password: password,

@@ -32,7 +32,7 @@ export default class LoginPage extends React.Component {
       return;
     }
     await axios
-      .post("login.php", {
+      .post("https://shortener-url.azurewebsites.net/login.php", {
         userEmail: userEmail,
         password: password,
       })
