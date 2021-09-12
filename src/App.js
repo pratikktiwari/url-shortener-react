@@ -5,7 +5,7 @@ import LoginSignupContainer from "./components/LoginSignupContainer";
 export default class App extends React.Component {
   /**
    * Checks if user is logged in from cookies
-   * @returns void
+   * @returns boolean
    */
   checkLoggedInUser = () => {
     const cookieKey = "userEmail";
@@ -23,8 +23,11 @@ export default class App extends React.Component {
       <Router>
         <Switch>
           <Route exact path="/">
-            {/* <LoginSignupContainer/> */}
-            <Dashboard />
+            {this.checkLoggedInUser() ? (
+              <Dashboard />
+            ) : (
+              <LoginSignupContainer />
+            )}
           </Route>
           <Route exact path="/login">
             <LoginSignupContainer />

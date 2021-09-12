@@ -19,7 +19,7 @@ export default class LoginPage extends React.Component {
     let date = new Date(Date.now() + 1000 * 86400e3);
     date = date.toUTCString();
     document.cookie = `userEmail=${this.state.userEmail}; expires=${date}`;
-    // window.location.href = "/dashboard";
+    window.location.href = "/home";
     sessionStorage.setItem("userEmail", this.state.userEmail);
   };
   checkLogin = async () => {

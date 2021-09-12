@@ -5,9 +5,12 @@ import "../styles/LoginContainerStyles.css";
 import imageLeftHuman from "../assets/imageLeftHumanWithLaptop.jpg";
 import FooterComponent from "./FooterComponent";
 export default class LoginSignupContainer extends React.Component {
-  state = {
-    isSignUpPage: true,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSignUpPage: !window.location.pathname.includes("login"),
+    };
+  }
   toggleLoginSignUp = () => {
     this.setState({
       isSignUpPage: !this.state.isSignUpPage,
@@ -18,15 +21,16 @@ export default class LoginSignupContainer extends React.Component {
     return (
       <div className="mainContainerSignupLogin">
         <h1 className="topHeader">
-          Hello there, <strong>{isSignUpPage ? "Create Account" : "Sign In" }</strong>
+          Hello there,{" "}
+          <strong>{isSignUpPage ? "Create Account" : "Sign In"}</strong>
         </h1>
         <div className="containerFlex">
           <div className="leftParentContainer">
-              <img
-                src={imageLeftHuman}
-                alt="man with laptop"
-                aria-label="man with laptop"
-              />
+            <img
+              src={imageLeftHuman}
+              alt="man with laptop"
+              aria-label="man with laptop"
+            />
           </div>
           <div className="rightParentContainer">
             {isSignUpPage ? (
