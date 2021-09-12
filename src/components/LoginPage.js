@@ -32,7 +32,7 @@ export default class LoginPage extends React.Component {
       return;
     }
     await axios
-      .post("http://localhost/url-shortener/login.php", {
+      .post("login.php", {
         userEmail: userEmail,
         password: password,
       })
