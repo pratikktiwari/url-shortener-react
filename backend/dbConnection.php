@@ -1,8 +1,8 @@
 <?php
-$dbhost  = 'mysql-php.mysql.database.azure.com';
+$dbhost  = 'server_name';
 $dbname  = 'url_shortener';
-$dbuser  = 'tiwari@mysql-php';
-$dbpass  = 'MySQLAzure2017';
+$dbuser  = 'username';
+$dbpass  = 'password';
 
 $connection = mysqli_init();
 mysqli_ssl_set($connection, NULL, NULL, "BaltimoreCyberTrustRoot.crt.pem", NULL, NULL);
