@@ -1,18 +1,59 @@
 import React from "react";
 import { Chart, registerables } from "chart.js";
 import thinkingManImage from "../assets/thinking-man.png";
+import loadingImage from "../assets/loadingBuffering.gif";
 export default class DashboardLeftSection extends React.Component {
   state = {
-    userData: [12, 19, 3, 5, 2, 3, 0, 0, 1],
+    graphData: [],
+    isDataLoaded: false,
   };
-  componentDidMount() {
-    this.renderChart();
+  componentDidMount() {}
+  componentDidUpdate(prevProps, prevState) {
+    const { shortenerData } = this.props;
+    if (
+      prevProps.shortenerData !== shortenerData &&
+      shortenerData &&
+      shortenerData.length
+    ) {
+      const currentDateObj = new Date();
+      const currentMonth = currentDateObj.getMonth() + 1;
+      const currentYear = currentDateObj.getFullYear();
+      const currentDate = currentDateObj.getDate();
+      const releventData = [];
+      const extractedData = {};
+      shortenerData.forEach((item) => {
+        const [year, month, date] = item.dateHit.split("-");
+        if (
+          item.dateHit &&
+          Number(month) === currentMonth &&
+          Number(year) === currentYear
+        ) {
+          extractedData[date] = item.totalVisits;
+        }
+      });
+      for (let i = 1; i <= currentDate; i++) {
+        if (extractedData[i]) {
+          releventData.push(extractedData[i] - 0);
+        } else {
+          releventData.push(0);
+        }
+      }
+      this.setState(
+        {
+          graphData: releventData,
+          isDataLoaded: true,
+        },
+        () => {
+          this.renderChart();
+        }
+      );
+    }
   }
   render() {
-    const { userData } = this.state;
+    const { graphData, isDataLoaded } = this.state;
     return (
       <div className="leftSection">
-        {userData.length ? (
+        {graphData && graphData.length ? (
           <div
             style={{
               maxWidth: "80%",
@@ -23,13 +64,29 @@ export default class DashboardLeftSection extends React.Component {
           </div>
         ) : (
           <div className="leftSectionNoURL">
-            <img
-              src={thinkingManImage}
-              alt="man thinking"
-              aria-label="You don't have any urls yet"
-            />
-            <h2>Opps !!!</h2>
-            <h3>Looks like you havn't shortened any URLs yet.</h3>
+            {isDataLoaded ? (
+              <>
+                <img
+                  src={thinkingManImage}
+                  alt="man thinking"
+                  aria-label="You don't have any urls yet"
+                />
+                <h2>Opps !!!</h2>
+                <h3>
+                  Looks like you haven't shortened any URLs yet, or they haven't
+                  received any hits.
+                </h3>
+              </>
+            ) : (
+              <>
+                <img
+                  src={loadingImage}
+                  style={{ width: 70 }}
+                  alt="loading"
+                  aria-label="loading"
+                />
+              </>
+            )}
           </div>
         )}
       </div>
@@ -46,7 +103,7 @@ export default class DashboardLeftSection extends React.Component {
         datasets: [
           {
             label: "# of Visits",
-            data: this.state.userData,
+            data: this.state.graphData,
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
