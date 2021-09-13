@@ -9,14 +9,15 @@ export default class DashboardHeader extends React.Component {
     userEmailAlias: "",
   };
   componentDidMount() {
-    //remove when fetching from session
-    window["currentUserAlias"] = "pratik@gmail.com";
     //set current user alias
     const loggedInUserAlias = window["currentUserAlias"]?.split("@")?.[0];
     this.setState({
       userEmailAlias: loggedInUserAlias,
     });
   }
+  logOutUser = () => {
+    document.cookie = "userEmail=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+  };
   render() {
     const { userEmailAlias } = this.state;
     return (
@@ -31,7 +32,7 @@ export default class DashboardHeader extends React.Component {
           </li>
           <li className="welcomeTextDashboard">Welcome {userEmailAlias}</li>
           <li className="logoutButtonHeader">
-            <Icon iconName="PowerButton" />
+            <Icon iconName="PowerButton" onClick={() => this.logOutUser} />
           </li>
         </ul>
       </nav>
