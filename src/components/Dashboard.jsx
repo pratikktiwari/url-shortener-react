@@ -4,49 +4,63 @@ import "../styles/DashboardStyles.css";
 import DashboardLeftSection from "./DashboardLeftSection";
 import DashboardRightSection from "./DashboardRightSection";
 import FooterComponent from "./FooterComponent";
-
+import axios from "axios";
 export default class Dashboard extends React.Component {
   state = {
-    shortenerData: [],
+    shortenerDataGraph: [],
+    shortenerDataTable: [],
   };
   componentDidMount() {
-    this.setState({
-      shortenerData: dummyData,
-    });
+    axios
+      .post("https://shortener-url.azurewebsites.net/getURLRecords.php", {})
+      .then((response) => {
+        if (response.status === 200) {
+          const responseData = response.data;
+          if (responseData && responseData.result) {
+            this.setState({
+              shortenerDataGraph: responseData.result.resultDateGrouped,
+              shortenerDataTable: responseData.result.resultCountGrouped,
+            });
+          }
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   renderTableData = () => {
-    return this.state.shortenerData.map((linkItem, index) => (
+    return this.state.shortenerDataTable.map((linkItem, index) => (
       <tr key={index}>
-        <td title={linkItem.name}>{linkItem.name}</td>
-        <td title={linkItem.url}>{linkItem.url?.substring(0, 50)}</td>
-        <td title={linkItem.visitCount}>{linkItem.visitCount}</td>
-        <td title={linkItem.locations}>{linkItem.locations?.join(", ")}</td>
+        <td title={linkItem.shortName}>{linkItem.shortName}</td>
+        <td title={linkItem.longURL}>{linkItem.longURL?.substring(0, 50)}</td>
+        <td title={linkItem.totalVisits}>{linkItem.totalVisits}</td>
       </tr>
     ));
   };
   render() {
-    const { shortenerData } = this.state;
+    const { shortenerDataGraph, shortenerDataTable } = this.state;
     return (
       <div className="dashboardContainer">
         <DashboardHeader />
         <div
           className="dashboardContainerFlex"
-          style={shortenerData.length ? { marginTop: 10 } : {}}
+          style={shortenerDataTable.length ? { marginTop: 10 } : {}}
         >
-          <DashboardLeftSection shortenerData={shortenerData} />
+          <DashboardLeftSection shortenerData={shortenerDataGraph} />
           <DashboardRightSection />
         </div>
-        {shortenerData && shortenerData.length ? (
+        {shortenerDataTable && shortenerDataTable.length ? (
           <div className="tableDashboardDetails">
             <h2>Statistics</h2>
             <table>
-              <tr>
-                <th>Name</th>
-                <th>URL</th>
-                <th>Total Visits</th>
-                <th>Location</th>
-              </tr>
-              {this.renderTableData()}
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <th>URL</th>
+                  <th>Total Visits</th>
+                </tr>
+                {this.renderTableData()}
+              </tbody>
             </table>
           </div>
         ) : (
@@ -57,29 +71,3 @@ export default class Dashboard extends React.Component {
     );
   }
 }
-const dummyData = [
-  {
-    name: "gmail",
-    url: "https://mail.google.com",
-    visitCount: 24,
-    locations: ["ranchi", "jalandhar", "punjab"],
-  },
-  {
-    name: "azure",
-    url: "https://portal.azure.com",
-    visitCount: 4,
-    locations: ["ranchi", "jalandhar", "punjab"],
-  },
-  {
-    name: "image_link",
-    url: "https://www.google.com/search?q=table+style&sxsrf=AOaemvKvyPliNm33Ue3QZNtl3lS9YnHCbw:1631240155878&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjO4KKQq_PyAhUjILcAHQrSArcQ_AUoAXoECAEQAw&biw=1536&bih=754&dpr=1.25#imgrc=FndcDSbGkTn8hM",
-    visitCount: 0,
-    locations: ["ranchi", "jalandhar", "punjab"],
-  },
-  {
-    name: "gmail",
-    url: "https://mail.google.com",
-    visitCount: 12322,
-    locations: ["ranchi", "jalandhar", "punjab"],
-  },
-];
